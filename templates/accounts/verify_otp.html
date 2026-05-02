@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto px-5">
+    <div class="glass-panel animate-fadeIn text-center">
+        <h2 class="text-3xl font-bold mb-2">Verify Email</h2>
+        <p class="text-slate-400 mb-6">Enter the 6-digit OTP sent to your email.</p>
+
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button class="btn-primary w-full">Verify OTP</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

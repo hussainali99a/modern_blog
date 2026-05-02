@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto px-5">
+    <div class="glass-panel animate-fadeIn">
+        <h2 class="text-3xl font-bold mb-2">Create Account</h2>
+        <p class="text-slate-400 mb-6">Join the modern communication network.</p>
+
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button class="btn-primary w-full">Register</button>
+        </form>
+
+        <p class="text-slate-400 mt-5 text-center">
+            Already have an account?
+            <a href="{% url 'accounts:login' %}" class="text-cyan-400">Login</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
