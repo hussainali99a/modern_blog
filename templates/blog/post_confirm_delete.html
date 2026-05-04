@@ -1,19 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="max-w-xl mx-auto px-5">
-    <div class="glass-panel text-center animate-fadeIn">
-        <h1 class="text-3xl font-bold mb-4">Delete Post?</h1>
+<div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="glass-panel text-center animate-fadeIn p-6 sm:p-8">
 
-        <p class="text-slate-400 mb-6">
-            Are you sure you want to delete "{{ post.title }}"?
+        <h1 class="text-2xl sm:text-3xl font-bold mb-4">
+            Delete Post?
+        </h1>
+
+        <p class="text-slate-400 mb-6 text-sm sm:text-base break-words">
+            Are you sure you want to delete "<span class="text-white font-semibold">{{ post.title }}</span>"?
         </p>
 
-        <form method="POST" class="flex justify-center gap-4">
+        <form method="POST" class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             {% csrf_token %}
-            <button class="btn-danger">Yes, Delete</button>
-            <a href="{% url 'blog:post_detail' post.slug %}" class="btn-secondary">Cancel</a>
+
+            <button class="btn-danger w-full sm:w-auto">
+                Yes, Delete
+            </button>
+
+            <a href="{% url 'blog:post_detail' post.slug %}" 
+               class="btn-secondary w-full sm:w-auto text-center">
+                Cancel
+            </a>
         </form>
+
     </div>
 </div>
 {% endblock %}

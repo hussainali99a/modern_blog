@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="max-w-7xl mx-auto px-5">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Header -->
     <div class="text-center mb-10 animate-fadeIn">
-        <h1 class="text-5xl font-black">Explore Conversations</h1>
-        <p class="text-slate-400 mt-3">Discover thoughts, stories, and communication that matters.</p>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black">
+            Explore Conversations
+        </h1>
+        <p class="text-slate-400 mt-3 text-sm sm:text-base">
+            Discover thoughts, stories, and communication that matters.
+        </p>
     </div>
 
-    <form method="GET" class="grid md:grid-cols-3 gap-4 mb-10">
-        <input type="text" name="q" placeholder="Search blogs..." class="input-field">
+    <!-- Search -->
+    <form method="GET" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10">
+        <input type="text" name="q" placeholder="Search blogs..." class="input-field w-full">
 
-        <select name="category" class="input-field">
+        <select name="category" class="input-field w-full">
             <option value="">All Categories</option>
             <option value="Technology">Technology</option>
             <option value="Lifestyle">Lifestyle</option>
@@ -20,53 +27,71 @@
             <option value="Other">Other</option>
         </select>
 
-        <button class="btn-primary">Search</button>
+        <button class="btn-primary w-full">
+            Search
+        </button>
     </form>
 
-    <div class="grid md:grid-cols-3 gap-8">
+    <!-- Posts Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {% for post in posts %}
-            <div class="glass-panel hover:-translate-y-2 transition duration-300">
+            <div class="glass-panel hover:-translate-y-2 transition duration-300 p-4 sm:p-5 flex flex-col">
+
                 {% if post.image %}
-                    <img src="{{ post.image.url }}" class="rounded-2xl mb-4 h-48 w-full object-cover">
+                    <img src="{{ post.image.url }}"
+                         class="rounded-xl sm:rounded-2xl mb-4 h-40 sm:h-48 w-full object-cover">
                 {% endif %}
 
-                <span class="text-xs bg-cyan-400/20 text-cyan-300 px-3 py-1 rounded-full">
+                <span class="text-xs bg-cyan-400/20 text-cyan-300 px-3 py-1 rounded-full w-fit">
                     {{ post.category }}
                 </span>
 
-                <h2 class="text-2xl font-bold mt-4">{{ post.title }}</h2>
+                <h2 class="text-lg sm:text-xl lg:text-2xl font-bold mt-4 break-words">
+                    {{ post.title }}
+                </h2>
 
-                <p class="text-slate-400 mt-3">
-                    <!-- {{ post.content|truncatewords:25 }} -->
-                      {{ post.content|striptags|truncatewords:25 }}
+                <p class="text-slate-400 mt-3 text-sm sm:text-base">
+                    {{ post.content|striptags|truncatewords:25 }}
                 </p>
 
-                <div class="flex justify-between items-center mt-5 text-sm text-slate-400">
-                    <span>By {{ post.author.username }}</span>
+                <div class="flex justify-between items-center mt-5 text-xs sm:text-sm text-slate-400">
+                    <span class="truncate">By {{ post.author.username }}</span>
                     <span>❤️ {{ post.total_likes }}</span>
                 </div>
 
-                <a href="{% url 'blog:post_detail' post.slug %}" class="btn-secondary mt-5 block text-center">
+                <a href="{% url 'blog:post_detail' post.slug %}"
+                   class="btn-secondary mt-5 block text-center w-full">
                     Read More
                 </a>
             </div>
         {% empty %}
-            <p class="text-center text-slate-400 col-span-3">No posts found.</p>
+            <p class="text-center text-slate-400 col-span-full text-sm sm:text-base">
+                No posts found.
+            </p>
         {% endfor %}
     </div>
 
-    <div class="flex justify-center mt-12 gap-3">
+    <!-- Pagination -->
+    <div class="flex flex-col sm:flex-row justify-center items-center mt-12 gap-3">
+
         {% if page_obj.has_previous %}
-            <a class="btn-secondary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            <a class="btn-secondary w-full sm:w-auto text-center"
+               href="?page={{ page_obj.previous_page_number }}">
+                Previous
+            </a>
         {% endif %}
 
-        <span class="px-5 py-3 rounded-xl bg-white/10">
+        <span class="px-4 sm:px-5 py-2 sm:py-3 rounded-xl bg-white/10 text-sm sm:text-base text-center">
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
         </span>
 
         {% if page_obj.has_next %}
-            <a class="btn-secondary" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn-secondary w-full sm:w-auto text-center"
+               href="?page={{ page_obj.next_page_number }}">
+                Next
+            </a>
         {% endif %}
     </div>
+
 </section>
 {% endblock %}

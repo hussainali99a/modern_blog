@@ -1,57 +1,88 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="max-w-4xl mx-auto px-5">
-    <article class="glass-panel animate-fadeIn">
+<section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <article class="glass-panel animate-fadeIn p-5 sm:p-8">
         {% if post.image %}
-            <img src="{{ post.image.url }}" class="rounded-3xl mb-6 w-full max-h-[450px] object-cover">
+            <img src="{{ post.image.url }}"
+                 class="rounded-2xl sm:rounded-3xl mb-6 w-full max-h-[260px] sm:max-h-[360px] lg:max-h-[450px] object-cover">
         {% endif %}
 
-        <div class="flex justify-between items-center mb-4">
-            <span class="text-cyan-400">{{ post.category }}</span>
-            <span class="text-slate-400">By {{ post.author.username }}</span>
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-4">
+            <span class="text-cyan-400 text-sm sm:text-base">
+                {{ post.category }}
+            </span>
+
+            <span class="text-slate-400 text-sm sm:text-base">
+                By {{ post.author.username }}
+            </span>
         </div>
 
-        <h1 class="text-5xl font-black mb-5">{{ post.title }}</h1>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-5 leading-tight break-words">
+            {{ post.title }}
+        </h1>
 
-        <!-- <p class="text-slate-300 leading-8 whitespace-pre-line">{{ post.content }}</p> -->
-         <div class="text-slate-300 leading-8 prose prose-invert max-w-none">
-    {{ post.content|safe }}
-</div>
+        <div class="text-slate-300 leading-7 sm:leading-8 prose prose-invert max-w-none prose-sm sm:prose-base break-words overflow-x-auto">
+            {{ post.content|safe }}
+        </div>
 
-        <div class="mt-8 flex items-center gap-4">
-            <form method="POST" action="{% url 'blog:like_post' post.slug %}">
+        <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+            <form method="POST" action="{% url 'blog:like_post' post.slug %}" class="w-full sm:w-auto">
                 {% csrf_token %}
-                <button class="btn-primary">❤️ Like {{ post.total_likes }}</button>
+                <button class="btn-primary w-full sm:w-auto">
+                    ❤️ Like {{ post.total_likes }}
+                </button>
             </form>
 
             {% if post.author == user %}
-                <a href="{% url 'blog:post_update' post.slug %}" class="btn-secondary">Edit</a>
-                <a href="{% url 'blog:post_delete' post.slug %}" class="btn-danger">Delete</a>
+                <a href="{% url 'blog:post_update' post.slug %}" class="btn-secondary w-full sm:w-auto text-center">
+                    Edit
+                </a>
+
+                <a href="{% url 'blog:post_delete' post.slug %}" class="btn-danger w-full sm:w-auto text-center">
+                    Delete
+                </a>
             {% endif %}
         </div>
     </article>
 
-    <section class="glass-panel mt-8">
-        <h2 class="text-3xl font-bold mb-5">Comments</h2>
+    <section class="glass-panel mt-8 p-5 sm:p-8">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-5">
+            Comments
+        </h2>
 
         <form method="POST" class="mb-8 space-y-4">
             {% csrf_token %}
             {{ comment_form.as_p }}
-            <button class="btn-primary">Add Comment</button>
+
+            <button class="btn-primary w-full sm:w-auto">
+                Add Comment
+            </button>
         </form>
 
         <div class="space-y-4">
             {% for comment in comments %}
-                <div class="bg-white/5 rounded-2xl p-4">
-                    <div class="font-bold text-cyan-400">{{ comment.user.username }}</div>
-                    <p class="text-slate-300 mt-2">{{ comment.body }}</p>
-                    <p class="text-xs text-slate-500 mt-2">{{ comment.created_at }}</p>
+                <div class="bg-white/5 rounded-2xl p-4 break-words">
+                    <div class="font-bold text-cyan-400 text-sm sm:text-base">
+                        {{ comment.user.username }}
+                    </div>
+
+                    <p class="text-slate-300 mt-2 text-sm sm:text-base">
+                        {{ comment.body }}
+                    </p>
+
+                    <p class="text-xs text-slate-500 mt-2">
+                        {{ comment.created_at }}
+                    </p>
                 </div>
             {% empty %}
-                <p class="text-slate-400">No comments yet. Start the conversation.</p>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    No comments yet. Start the conversation.
+                </p>
             {% endfor %}
         </div>
     </section>
+
 </section>
 {% endblock %}

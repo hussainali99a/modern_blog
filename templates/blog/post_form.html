@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto px-5">
-    <div class="glass-panel animate-fadeIn">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="glass-panel animate-fadeIn p-5 sm:p-8">
 
-        <h1 class="text-4xl font-black mb-6">
+        <h1 class="text-3xl sm:text-4xl font-black mb-6 leading-tight">
             {{ title }}
         </h1>
 
-        <form method="POST" enctype="multipart/form-data" class="space-y-4">
+        <form method="POST" enctype="multipart/form-data" class="space-y-5">
             {% csrf_token %}
 
             <!-- TinyMCE media -->
             {{ form.media }}
 
             <!-- Form -->
-            {{ form.as_p }}
+            <div class="responsive-form">
+                {{ form.as_p }}
+            </div>
 
-            <button class="btn-primary mt-4">
+            <button class="btn-primary w-full sm:w-auto mt-4">
                 Save Post
             </button>
         </form>

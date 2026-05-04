@@ -1,17 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="max-w-md mx-auto px-5">
-    <div class="glass-panel animate-fadeIn text-center">
-        <h2 class="text-3xl font-bold mb-2">Verify Email</h2>
-        <p class="text-slate-400 mb-6">Enter the 6-digit OTP sent to your email.</p>
+<div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div class="glass-panel animate-fadeIn text-center p-5 sm:p-8">
 
-        <form method="POST" class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-2">
+            Verify Email
+        </h2>
+
+        <p class="text-slate-400 mb-6 text-sm sm:text-base">
+            Enter the 6-digit OTP sent to your email.
+        </p>
+
+        <form method="POST" class="space-y-4 responsive-form text-left">
             {% csrf_token %}
             {{ form.as_p }}
 
-            <button class="btn-primary w-full">Verify OTP</button>
+            <button class="btn-primary w-full">
+                Verify OTP
+            </button>
         </form>
+
     </div>
 </div>
 {% endblock %}

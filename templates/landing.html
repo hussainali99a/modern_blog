@@ -1,58 +1,60 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="min-h-[85vh] flex items-center justify-center px-5">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+<section class="min-h-[85vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 items-center">
 
-        <div class="animate-fadeIn">
-            <p class="text-cyan-400 font-semibold mb-4">
+        <!-- Left Content -->
+        <div class="animate-fadeIn text-center md:text-left">
+            <p class="text-cyan-400 font-semibold mb-3 sm:mb-4 text-sm sm:text-base">
                 Modern Communication Platform
             </p>
 
-            <h1 class="text-5xl md:text-7xl font-black leading-tight">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
                 Share ideas.
-                <br>
+                <br class="hidden sm:block">
                 Build conversations.
-                <br>
+                <br class="hidden sm:block">
                 Inspire people.
             </h1>
 
-            <p class="text-slate-300 mt-6 text-lg leading-relaxed">
+            <p class="text-slate-300 mt-5 sm:mt-6 text-base sm:text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
                 A unique advanced Django blog application designed for writers,
                 creators, learners, and communities.
             </p>
 
-            <div class="mt-8 flex gap-4">
-                <a href="{% url 'accounts:register' %}" class="btn-primary">
+            <div class="mt-7 sm:mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <a href="{% url 'accounts:register' %}" class="btn-primary text-center">
                     Start Writing
                 </a>
 
-                <a href="{% url 'blog:post_list' %}" class="btn-secondary">
+                <a href="{% url 'blog:post_list' %}" class="btn-secondary text-center">
                     Explore Blogs
                 </a>
             </div>
         </div>
 
-        <div class="relative animate-float">
+        <!-- Right Card -->
+        <div class="relative animate-float w-full max-w-md mx-auto md:max-w-none">
             <div class="absolute inset-0 bg-cyan-500 blur-3xl opacity-20 rounded-full"></div>
 
-            <div class="relative bg-white/10 border border-white/10 rounded-3xl p-8 shadow-2xl">
+            <div class="relative bg-white/10 border border-white/10 rounded-3xl p-5 sm:p-8 shadow-2xl">
                 <div class="flex items-center gap-4 mb-6">
-                    <div class="w-14 h-14 rounded-full bg-cyan-400 flex items-center justify-center text-3xl">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-cyan-400 flex items-center justify-center text-2xl sm:text-3xl shrink-0">
                         ✍️
                     </div>
 
                     <div>
-                        <h3 class="text-xl font-bold">Communication Feed</h3>
-                        <p class="text-slate-400">Real thoughts. Real people.</p>
+                        <h3 class="text-lg sm:text-xl font-bold">Communication Feed</h3>
+                        <p class="text-slate-400 text-sm sm:text-base">Real thoughts. Real people.</p>
                     </div>
                 </div>
 
                 <div class="space-y-4">
-                    <div class="glass-card">💡 Write powerful ideas</div>
-                    <div class="glass-card">❤️ Like meaningful posts</div>
-                    <div class="glass-card">💬 Discuss through comments</div>
-                    <div class="glass-card">👤 Build your creator profile</div>
+                    <div class="glass-card text-sm sm:text-base">💡 Write powerful ideas</div>
+                    <div class="glass-card text-sm sm:text-base">❤️ Like meaningful posts</div>
+                    <div class="glass-card text-sm sm:text-base">💬 Discuss through comments</div>
+                    <div class="glass-card text-sm sm:text-base">👤 Build your creator profile</div>
                 </div>
             </div>
         </div>

@@ -79,3 +79,36 @@
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+
+.responsive-form p {
+    margin-bottom: 1rem;
+}
+
+.responsive-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #cbd5e1;
+    font-weight: 600;
+}
+
+.responsive-form input,
+.responsive-form textarea,
+.responsive-form select {
+    width: 100%;
+    max-width: 100%;
+    background: rgba(15, 23, 42, 0.9);
+    color: white;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    outline: none;
+}
+
+.responsive-form input[type="file"] {
+    padding: 0.6rem;
+}
+
+.tox-tinymce {
+    max-width: 100%;
+}
