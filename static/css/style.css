@@ -112,3 +112,7 @@
 .tox-tinymce {
     max-width: 100%;
 }
+
+input[type="password"] {
+    padding-right: 2.5rem;
+}

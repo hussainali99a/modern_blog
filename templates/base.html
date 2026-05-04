@@ -220,5 +220,40 @@ setTimeout(() => {
 }, 4000);
 </script>
 
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const passwordFields = document.querySelectorAll("input[type='password']");
+
+    passwordFields.forEach((field) => {
+        if (field.closest(".password-wrapper")) return;
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "password-wrapper relative w-full";
+
+        field.parentNode.insertBefore(wrapper, field);
+        wrapper.appendChild(field);
+
+        field.classList.add("pr-12", "w-full");
+
+        const toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.innerHTML = "👁️";
+        toggle.className = "absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-cyan-400 text-sm";
+        toggle.setAttribute("aria-label", "Show password");
+
+        wrapper.appendChild(toggle);
+
+        toggle.addEventListener("click", function () {
+            const isPassword = field.type === "password";
+            field.type = isPassword ? "text" : "password";
+            toggle.innerHTML = isPassword ? "🙈" : "👁️";
+            toggle.setAttribute("aria-label", isPassword ? "Hide password" : "Show password");
+        });
+    });
+});
+
+</script>
+
 </body>
 </html>
